@@ -1,7 +1,6 @@
 $(function() {    
 
     $("#signupbtn").click(function(){
-        console.log("Hiiii");
         var username = $("#uname").val();
         var password = $("#password").val();
         var email = $("#email").val();
