@@ -25,13 +25,32 @@ app.get("/products", async (req, res) => {
 // get a table (select from table?)
 
 // insert into table ! (not create)
-// this will correspond to a login form
+// this will correspond to a signup form
 app.post("/", async (req, res) => {
-    const loginUser= await pool.query("insert into users (username, email, password, first_name, last_name, address, phone) values ('"+ req.body.uname + "', '" + req.body.pwd + "', '" + req.body.email + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.address + "', " + req.body.phone + ") returning *"); //, [username, password, email, fname, lname, address, phone]);
+    // username shouldn't be there
+    const loginUser = await pool.query("insert into users (username, password, email, first_name, last_name, address, phone) select '"+ req.body.uname + "', '" + req.body.pwd + "', '" + req.body.email + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.address + "', " + req.body.phone + " where not exists (select * from users where username='" + req.body.uname + "') returning *");
+
+    if (loginUser.rows.length == 0) {
+        res.send("400", {"message": "Username already exists"});
+    }
+    else {
+        res.send("200", {"message": "User successfully registerd"});
+    }
+
+    console.log(loginUser.rows.length);
+});
+
+// login fetch
+app.get("/", async (req, res) => {
+    // username shouldn't be there
+    const loginUser= await pool.query("select * from users where username='" + req.body.uname + "'"); //, [username, password, email, fname, lname, address, phone]);
     res.json(loginUser.rows);
     console.log(req.body);
 });
 
+
+
+// inserting products from admin user
 
 // update a table (update a record in a table?)
 // id is product id
@@ -65,7 +84,7 @@ app.delete("/deleteu/:id", async (req, res) => {
 //  ********** CART RELATED **********
 // show cart
 app.get("/cart/:id", async (req, res) => {
-    const allcartproducts = await pool.query("select p.product_name, p.price, p.image_name, c.quantity from cart as c inner join products as p on c.product_id=p.pid where p.user_id = " + req.params.id + ";");
+    const allcartproducts = await pool.query("select p.product_name, p.price, p.image_name, c.quantity from cart_items as c inner join products as p on c.product_id=p.pid where p.user_id = " + req.params.id + ";");
     res.json(allcartproducts.rows);
     // console.log(req.body);
 });
