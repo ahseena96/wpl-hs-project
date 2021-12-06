@@ -1,0 +1,54 @@
+<%- include ('partials/header') %>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="container">
+  <div>
+    <div class="row">
+      <a class="btn btn-info" style=" margin-left:1000px;" href="/logout" >Logout</a>
+  </div>
+  </div>
+  <div class="row" style="text-align: center">
+  <table>
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+        <th>Options</th>
+    </tr>
+    <% results.forEach(function(item) { %>
+      <tr>
+        <th><img src="/images/<%= item.image %>" style="width:200px; height:200px;" class="img-thumbnail"/>
+          <p><%= item.title %></p></th>
+        <th><%= item.quantity %></th>
+        <th><%= item.quantity * item.price %></th>
+        <th>
+          <form action="/cart/<%= item._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+              <input name="quantity" class="form-control" placeholder="quantity" type="hidden" value=<%= parseInt(item.quantity) + 1 %>>
+            </div>
+            <button type="submit" class="btn form-control" style="background-color: lightseagreen;">Add one more</button>
+          </form>
+          <form action="/cart/remove/<%= item._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+              <input name="quantity" class="form-control" placeholder="quantity" type="hidden" value=<%= parseInt(item.quantity) - 1 %>>
+            </div>
+            <button type="submit" class="btn form-control" style="background-color: lightsalmon;">Remove one</button>
+          </form>
+          <form action="/cart/delete/<%= item._id %>?_method=PUT" method="POST">
+            <button type="submit" class="btn form-control" style="background-color: rgb(253, 82, 82);">Clear item</button>
+          </form>
+          </th>
+    </tr>
+    <% }); %>
+  </table>
+
+  </div>
+</div>
+
+
+<%- include ('partials/footer') %>
+
+              
+

@@ -1,0 +1,24 @@
+<%- include ('partials/header') %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<% if (user) { %>
+
+<div class="caption">You are currently logged in as <%= user.username %></div>
+<a href="/logout">Logout</a>
+
+<a href="/items">Go to store. You are just one click away!</a>
+
+
+<% } else { %>
+
+<div class="caption">Welcome Guest! </div>
+
+<a href="/login">Login
+<br />
+<a href="/register">Register</a></a>
+
+
+<%} %>
+<%- include ('partials/footer') %>
+

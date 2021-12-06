@@ -1,0 +1,45 @@
+<%- include ('partials/header') %>
+
+<style>
+    #d1 {
+        display: inline-block;
+    }
+
+    #d2 {
+        display: inline-block;
+    }
+</style>
+
+<div class="container">
+<h1> <%= item.title %> </h1>
+
+
+<div id="d1">
+<img src="/images/<%= item.image %>" />
+</div>
+<div id="d2">
+<p>Category: <%= item.category %></p>
+<p>Description: <%= item.description %></p>
+<p>Price: $<%= item.price %></p>
+<br>
+<form action="/cart" method="POST">
+    <div class="form-group">
+        <input name="itemid" class="form-control" placeholder="itemid" type="hidden"  value=<%= item._id %>>
+        <input name="title" class="form-control" placeholder="title" type="hidden"  value=<%= item.title %>>
+        <input name="price" class="form-control" placeholder="price" type="hidden"  value=<%= item.price %>>
+        <input name="image" class="form-control" placeholder="image" type="hidden"  value=<%= item.image %>>
+        <input name="userid" class="form-control" placeholder="userid" type="hidden"  value=<%= user._id %>>
+        <input name="quantity" class="form-control" placeholder="quantity" type="hidden" value=1>
+    </div>
+    <button type="submit" class="btn form-control" style="background-color: lightseagreen;">Add to cart</button>
+</form>
+
+<button onclick = "window.location.href='/cart'" style="background-color: lightsalmon;" class=" form-control btn btn-lg">View cart</button>
+<button onclick = "window.location.href='/'" style="background-color: lightsalmon;" class=" form-control btn btn-lg">Back</button>
+</div>
+
+
+
+
+</div>
+<%- include ('partials/footer') %>

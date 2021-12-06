@@ -1,0 +1,40 @@
+<%- include ('partials/header') %>
+
+<div class="container">
+<h1> Update item </h1>
+<p>Please note that the form is prefilled with previous values. Please change accordingly.</p>
+<div class="box" id="box">
+    <div class="box-row">
+        <div class="box-cell box1">
+            <p>You are updating the details of this item:</p>
+            <img src="/images/<%= item.image %>" width="500" height="500"/>
+        </div>
+        <div class="box-cell box2">
+            <form action="/items/<%= item._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input type="text" name="title" placeholder="Title" value="<%= item.title %>">
+                </div>
+                <div class="form-group">
+                    <textarea name="desc" placeholder="Description" ><%= item.description %></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="image" placeholder="Image name with extension" value="<%= item.image %>">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="category" placeholder="Category" value="<%= item.category %>"> 
+                </div>
+                <!-- <div class="form-group"> -->
+                <button type="submit" class="btn btn-info" style= "background-color:lightcoral">Save</button>
+                    <!-- <a style= "background-color:lightcoral" href="/items/save/<%= item._id %>" role="button">Save</a> -->
+                <!-- </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<p>
+<a href="/">Back to List</a>
+</p>
+
+</div>
+<%- include ('partials/footer') %>

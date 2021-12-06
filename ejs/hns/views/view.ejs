@@ -1,0 +1,22 @@
+<%- include ('partials/header') %>
+
+
+<div class="container">
+<h1> <%= item.title %> </h1>
+
+<p><img src="/images/<%= item.image %>" /></p>
+<p>Category: <%= item.category %></p>
+<p>Description: <%= item.description %></p>
+<p>Price: $<%= item.price %></p>
+
+
+<a class="btn btn-warning" href="/items/edit/<%= item._id %>" role="button">Edit item</a>
+
+<form action="/items/<%= item._id %>?_method=PUT" method="POST">
+    <button type="button" class="btn btn-danger">Delete item</button>
+</form>
+
+<p><a href="/">Back to List</a></p>
+
+</div>
+<%- include ('partials/footer') %>

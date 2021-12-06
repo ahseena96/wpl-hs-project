@@ -1,0 +1,29 @@
+<%- include ('partials/header') %>
+
+<div class="container">
+  <h2>Welcome to Women's accessories store. We are glad you want to shop with us!</h2>
+  <h2>Please sign up to continue</h2>
+  <form action="/signup" method="POST">
+    <div class="form-group">
+      <input type="text" name="username" class="form-control" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <textarea name="password" class="form-control" placeholder="Password"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="text" name="fullname" class="form-control" placeholder="Full Name">
+    </div>
+    <div class="form-group">
+      <input type="text" name="phone" class="form-control" placeholder="Phone">
+    </div>
+    <div class="form-group">
+      <input type="text" name="address" class="form-control" placeholder="Address">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-info" type="submit" >Signup</button>
+    </div>
+    </form>
+</div>
+
+
+<%- include ('partials/footer') %>

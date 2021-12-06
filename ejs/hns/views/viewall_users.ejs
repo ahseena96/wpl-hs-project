@@ -1,0 +1,52 @@
+<%- include ('partials/header') %>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  // function
+</script>
+
+<div class="container">
+  <div>
+    
+    <div class="row">
+      <div>
+        <a class="btn btn-info" style=" margin-left:1000px;" href="/logout" >Logout</a>
+      </div>
+    <form action="/filter" method="POST"> 
+      <div class="form-group" id="form">
+        <input type="text" name="search" id="search" placeholder="Search for titles" />
+        <select id="filter">
+          <option value="All">All</option>
+          <option value="Handbags">Handbags</option>
+          <option value="Shoes">Shoes</option>
+        </select>
+        <button type="submit" class="btn btn-info" style=" margin-left:20px; ">Search</button>
+      </div>
+    </form>
+    
+  </div>
+  </div>
+
+<div class="row" style="text-align: center">
+<% results.forEach(function(item){ %>
+	<div>
+    <!-- <p> <%= user._id %></p> -->
+		<img src="/images/<%= item.image %>" style="width:200px; height:200px;" class="img-thumbnail"/>
+		<div class="caption"><a href="items/<%= item._id %>/<%= user._id %>"><%= item.title %></a></div>
+	</div>
+
+
+<% }); %>
+
+</div>
+
+
+
+</div>
+
+
+
+<%- include ('partials/footer') %>
+
