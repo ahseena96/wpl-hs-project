@@ -50,8 +50,8 @@ router.post('/', function(req, res, next) {
     })
 });
 
-
 router.get('/edit/:id',function(req,res) {
+    console.log("hi");
   collection.findOne({_id : req.params.id}, function(err,item){
       if (err) throw err;
       console.log(item);

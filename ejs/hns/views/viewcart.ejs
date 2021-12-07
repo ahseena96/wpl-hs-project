@@ -1,4 +1,5 @@
 <%- include ('partials/header') %>
+<%- include ('clickall') %>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -39,12 +40,28 @@
           <form action="/cart/delete/<%= item._id %>?_method=PUT" method="POST">
             <button type="submit" class="btn form-control" style="background-color: rgb(253, 82, 82);">Clear item</button>
           </form>
+          <form action="/checkout" method="POST">
+            <div class="form-group">
+              <input name="itemid" class="form-control" placeholder="itemid" type="hidden"  value=<%= item._id %>>
+              <input name="title" class="form-control" placeholder="title" type="hidden"  value=<%= item.itemname %>>
+              <input name="image" class="form-control" placeholder="image" type="hidden"  value=<%= item.image %>>
+              <input name="userid" class="form-control" placeholder="userid" type="hidden"  value=<%= user._id %>>
+              <input name="quantity" class="form-control" placeholder="quantity" type="hidden" value=<%= parseInt(item.quantity) %>>
+              <input name="price" class="form-control" placeholder="price" type="hidden"  value=<%= parseInt(item.quantity)*parseInt(item.price) %>>
+            </div>
+            <button type="submit" class="btn form-control" style="background-color: lightgreen;">Buy</button>
+          </form>
           </th>
     </tr>
     <% }); %>
   </table>
+  </div>
+  <div>
+    <a class="btn form-control" style="background-color: lightgreen;" href="/done" >done</a>
 
   </div>
+  
+  
 </div>
 
 

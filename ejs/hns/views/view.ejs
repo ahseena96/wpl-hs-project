@@ -10,7 +10,8 @@
 <p>Price: $<%= item.price %></p>
 
 
-<a class="btn btn-warning" href="/items/edit/<%= item._id %>" role="button">Edit item</a>
+<!-- <a class="btn btn-warning" href="edit/<%= item._id %>" role="button">Edit item</a> -->
+<a class="btn btn-warning" href="/edit/<%= item._id %>" role="button">Edit item</a>
 
 <form action="/items/<%= item._id %>?_method=PUT" method="POST">
     <button type="button" class="btn btn-danger">Delete item</button>

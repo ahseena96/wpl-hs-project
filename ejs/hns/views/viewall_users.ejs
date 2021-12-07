@@ -28,6 +28,15 @@
     
   </div>
   </div>
+  <div>
+    <!-- <form action="/orderhistory" method="GET"> -->
+      <!-- <div class="form-group">
+          <input name="userid" class="form-control" placeholder="userid" type="hidden"  value=<%= user._id %>>
+      </div> -->
+      <a type="submit" href="/orderhistory/<%= user._id %>" class="btn" style="background-color:lightskyblue; margin-left:900px;">Show order history</a>
+  <!-- </form> -->
+    <button type="submit" class="btn btn-info" style=" margin-left:20px; ">Search</button>
+  </div>
 
 <div class="row" style="text-align: center">
 <% results.forEach(function(item){ %>

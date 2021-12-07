@@ -62,7 +62,6 @@ router.put('/remove/:id',function(req,res) {
     })
   });
 
-// soft delete an existing item
 router.put('/delete/:id', function(req, res) {
     console.log(req.body);
     collection.remove({ _id : req.params.id}, function(err, video) {

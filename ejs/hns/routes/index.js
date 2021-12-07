@@ -8,6 +8,7 @@ var db = monk('localhost:27017/hns');
 var passport = require('passport');
 var Account = require('../models/account');
 var collection = db.get('items');
+var order = db.get('orderhistory');
 
 
 // /* GET home page - admin */
@@ -23,6 +24,14 @@ router.post('/cart/:id/:uid', function(req, res, next) {
   res.render('add');
 });
 
+router.get('/edit/:id',function(req,res) {
+  console.log("hi");
+  collection.findOne({_id : req.params.id}, function(err,item){
+    if (err) throw err;
+    console.log(item);
+    res.render('show_copy', {item: item});
+});
+});
 
 router.get('/', function (req, res) {
   // if admin, go to items page
@@ -70,6 +79,31 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+router.post('/checkout', function(req, res) {
+  console.log(req.body)
+  order.insert({
+    item: req.body.itemid,
+    title: req.body.title,
+    image: req.body.image,
+    user: req.body.userid,
+    quantity: parseInt(req.body.quantity),
+    totalprice: req.body.price,
+}, function(err, item) {
+    if (err) throw err;
+    res.status(204).send();
+})
+});
 
+router.get('/orderhistory/:id', function(req, res) {
+  order.find({user : req.params.id.toString()}, function(err,items){
+    if (err) throw err;
+    console.log(items);
+    res.render('showorderhistory', {results: items});
+});
+});
+
+router.get('/done', function(req, res) {
+  res.render('orderhistory');
+});
 
 module.exports = router;

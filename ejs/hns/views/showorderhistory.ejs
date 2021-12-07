@@ -1,0 +1,27 @@
+<%- include ('partials/header') %>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  // function
+</script>
+
+<div class="container">
+<p> Items you purchased are: </p>
+<div class="row" style="text-align: center">
+<% results.forEach(function(item){ %>
+	<div>
+    <img src="/images/<%= item.image %>" style="width:200px; height:200px;" class="img-thumbnail"/>
+		<div class="caption"><a href="items/<%= item._id %>"><%= item.title %></a></div>
+	</div>
+<% }); %>
+
+</div>
+<button onclick = "window.location.href='/useritems'" style="background-color: lightseagreen;" class=" form-control btn btn-lg">Back</button>
+</div>
+
+
+
+<%- include ('partials/footer') %>
+
